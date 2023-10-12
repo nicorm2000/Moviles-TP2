@@ -1,18 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager instance;
+    public bool isInitialized { get; set; }
+    public int currentScore { get; set; }
+    public int highScore 
     {
-        
+        get 
+        {
+            return PlayerPrefs.GetInt(_highScoreKey, 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(_highScoreKey, value);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private string _highScoreKey = "HighScore";
+
+    private void Awake()
     {
-        
+        if (instance == null) 
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            Init();
+            return;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Init()
+    {
+        currentScore = 0;
+        isInitialized = false;
+    }
+
+    private const string _mainMenu = "MainMenu"; 
+    private const string _game = "Game"; 
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(_mainMenu);
+    }
+
+    public void GoToGame()
+    {
+        SceneManager.LoadScene(_game);
     }
 }
