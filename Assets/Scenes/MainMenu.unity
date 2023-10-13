@@ -1213,12 +1213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf05c8219ca343241b86b3750587d7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreText: {fileID: 1885755600}
-  _newBestText: {fileID: 270688715}
-  _highScoreText: {fileID: 2144367695}
-  _clickClip: {fileID: 8300000, guid: 005f08fb0fe909b49ab2629f02bf9aec, type: 3}
-  _animationTime: 1.6
-  _speedCurve:
+  scoreText: {fileID: 1885755600}
+  newBestText: {fileID: 270688715}
+  highScoreText: {fileID: 2144367695}
+  clickClip: {fileID: 8300000, guid: 005f08fb0fe909b49ab2629f02bf9aec, type: 3}
+  animationTime: 1.6
+  speedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
