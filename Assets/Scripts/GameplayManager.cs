@@ -41,7 +41,7 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    private void GameEnded()
+    public void GameEnded()
     { 
         _hasGameFinished = true;
         GameManager.instance.currentScore = (int)_score;

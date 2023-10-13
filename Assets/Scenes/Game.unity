@@ -381,8 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03aa2fd6a21027645a59038f28e6fcaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRotateSpeed: 45
-  maxRotateSpeed: 180
+  minRotateSpeed: 60
+  maxRotateSpeed: 105
   minRotateTime: 0.5
   maxRotateTime: 1
 --- !u!1 &578153442
@@ -977,6 +977,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67e42f6ff9123b46925140d5752694e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateSpeed: 90
+  moveClip: {fileID: 8300000, guid: 30949f6c42431234296fb56f29a5f89f, type: 3}
+  loseClip: {fileID: 8300000, guid: a6fe66a91d38d164db8534fbd509d5c7, type: 3}
+  gameplayManager: {fileID: 1189743225}
+  explosion: {fileID: 6633317747190257630, guid: 7255835a607d9514690a9beb45f561ca, type: 3}
 --- !u!1 &1612570126
 GameObject:
   m_ObjectHideFlags: 0
