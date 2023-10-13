@@ -5,12 +5,12 @@ using System.Collections;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _scoreText;
-    [SerializeField] private TMP_Text _newBestText;
-    [SerializeField] private TMP_Text _highScoreText;
-    [SerializeField] private AudioClip _clickClip;
-    [SerializeField] private float _animationTime;
-    [SerializeField] private AnimationCurve _speedCurve;
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text newBestText;
+    [SerializeField] private TMP_Text highScoreText;
+    [SerializeField] private AudioClip clickClip;
+    [SerializeField] private float animationTime;
+    [SerializeField] private AnimationCurve speedCurve;
 
     private void Awake()
     {
@@ -20,52 +20,52 @@ public class MainMenuManager : MonoBehaviour
         }
         else
         {
-            _scoreText.gameObject.SetActive(false);
-            _newBestText.gameObject.SetActive(false);
-            _highScoreText.text = GameManager.instance.highScore.ToString();
+            scoreText.gameObject.SetActive(false);
+            newBestText.gameObject.SetActive(false);
+            highScoreText.text = GameManager.instance.highScore.ToString();
         }
     }
 
     private IEnumerator ShowScore()
     {
         int tempScore = 0;
-        _scoreText.text = tempScore.ToString();
+        scoreText.text = tempScore.ToString();
 
         int currentScore = GameManager.instance.currentScore;
         int highScore = GameManager.instance.highScore;
 
         if (highScore < currentScore)
         {
-            _newBestText.gameObject.SetActive(true);
+            newBestText.gameObject.SetActive(true);
             GameManager.instance.highScore = currentScore;
         }
         else
         {
-            _newBestText.gameObject.SetActive(false);
+            newBestText.gameObject.SetActive(false);
         }
 
-        _highScoreText.text = GameManager.instance.highScore.ToString();
+        highScoreText.text = GameManager.instance.highScore.ToString();
 
-        float speed = 1 / _animationTime;
+        float speed = 1 / animationTime;
         float timeElapsed = 0f;
 
-        while (timeElapsed < _animationTime)
+        while (timeElapsed < animationTime)
         {
             timeElapsed += speed * Time.deltaTime;
 
-            tempScore = (int)(_speedCurve.Evaluate(timeElapsed) * currentScore);
-            _scoreText.text = tempScore.ToString();
+            tempScore = (int)(speedCurve.Evaluate(timeElapsed) * currentScore);
+            scoreText.text = tempScore.ToString();
             
             yield return null;
         }
 
         tempScore = currentScore;
-        _scoreText.text = tempScore.ToString();
+        scoreText.text = tempScore.ToString();
     }
 
     public void ClickedPlay()
     {
-        AudioManager.instance.PlaySound(_clickClip);
+        AudioManager.instance.PlaySound(clickClip);
         GameManager.instance.GoToGame();
     }
 }

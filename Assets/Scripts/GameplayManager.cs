@@ -1,18 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private TMP_Text score_Text;
+    [SerializeField] private List<int> levelSpeed, levelMax;
+
+    private bool _hasGameFinished;
+    private float _score;
+    private float _scoreSpeed;
+    private int _currentLevel;
+
+    private void Awake()
     {
-        
+        GameManager.instance.isInitialized = true;
+
+        _hasGameFinished = false;
+        _score = 0;
+        _currentLevel = 0;
+        score_Text.text = ((int)_score).ToString();
+        _scoreSpeed = levelSpeed[_currentLevel];
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (_hasGameFinished)
+        {
+            return;
+        }
+        _score += _scoreSpeed * Time.deltaTime;
+        score_Text.text = ((int)_score).ToString();
+
+        if (_score > levelMax[Mathf.Clamp(_currentLevel, 0, levelSpeed.Count - 1)])
+        {
+            _currentLevel = Mathf.Clamp(_currentLevel + 1, 0, levelSpeed.Count - 1);
+            _scoreSpeed = levelSpeed[_currentLevel];
+        }
+    }
+
+    private void GameEnded()
+    { 
+        _hasGameFinished = true;
+        GameManager.instance.currentScore = (int)_score;
+        StartCoroutine(GameOver());
+    }
+
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(2f);
+        GameManager.instance.GoToMainMenu();
     }
 }

@@ -696,6 +696,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede192345fbd32449512d68b105ce68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score_Text: {fileID: 1412057135}
+  levelSpeed: 0a000000140000003200000064000000c8000000
+  levelMax: 320000009600000090010000e8030000d0070000
 --- !u!1 &1236261743
 GameObject:
   m_ObjectHideFlags: 0
