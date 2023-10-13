@@ -21,7 +21,7 @@ public class Obstacle : MonoBehaviour
 
     private void Update()
     {
-        _currentRotateTime += _currentRotateSpeed * Time.deltaTime;
+        _currentRotateTime += Time.deltaTime;
         if (_currentRotateTime > _rotateTime)
         {
             _currentRotateTime = 0;
