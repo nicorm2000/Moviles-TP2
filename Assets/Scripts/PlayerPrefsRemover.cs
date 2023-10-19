@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
 [ExecuteInEditMode]
 public class PlayerPrefsRemover : EditorWindow
 {
@@ -12,3 +13,4 @@ public class PlayerPrefsRemover : EditorWindow
         Debug.Log("Player Prefs Deleted!");
     }
 }
+#endif
