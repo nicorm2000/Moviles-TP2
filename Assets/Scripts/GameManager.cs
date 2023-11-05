@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private const string _mainMenu = "MainMenu"; 
     private const string _game = "Game"; 
+    private const string _shop = "Shop"; 
 
     public void GoToMainMenu()
     {
@@ -52,5 +53,10 @@ public class GameManager : MonoBehaviour
     public void GoToGame()
     {
         SceneManager.LoadScene(_game);
+    }
+
+    public void GoToShop()
+    {
+        SceneManager.LoadScene(_shop);
     }
 }

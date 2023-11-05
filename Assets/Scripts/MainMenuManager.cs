@@ -5,6 +5,7 @@ using System.Collections;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] private GameObject credits;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text newBestText;
     [SerializeField] private TMP_Text highScoreText;
@@ -67,5 +68,29 @@ public class MainMenuManager : MonoBehaviour
     {
         AudioManager.instance.PlaySound(clickClip);
         GameManager.instance.GoToGame();
+    }
+
+    public void ClickedShop()
+    {
+        AudioManager.instance.PlaySound(clickClip);
+        GameManager.instance.GoToShop();
+    }
+
+    public void ActivateObject()
+    {
+        AudioManager.instance.PlaySound(clickClip);
+        credits.SetActive(true);
+    }
+
+    public void DeactivateObject()
+    {
+        AudioManager.instance.PlaySound(clickClip);
+        credits.SetActive(false);
+    }
+
+    public void OpenURL(string url)
+    {
+        AudioManager.instance.PlaySound(clickClip);
+        Application.OpenURL(url);
     }
 }
