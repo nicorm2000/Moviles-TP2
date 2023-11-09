@@ -14,25 +14,6 @@ public class Player : MonoBehaviour
             rotateSpeed *= -1f;
             AudioManager.instance.PlaySound(moveClip);
         }
-//#if UNITY_ANDROID
-//        {
-//            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-//            {
-//                rotateSpeed *= -1f;
-//                AudioManager.instance.PlaySound(moveClip);
-//                Debug.Log("Touch detected!");
-//            }
-//        }
-//#else
-//        {
-//            if (Input.GetMouseButtonDown(0))
-//            {
-//                rotateSpeed *= -1f;
-//                AudioManager.instance.PlaySound(moveClip);
-//                Debug.Log("Mouse click detected!");
-//            }
-//        }
-//#endif
     }
 
     private void FixedUpdate()

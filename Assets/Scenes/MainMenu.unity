@@ -1419,8 +1419,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   credits: {fileID: 1838200589}
-  creditsAnimator: {fileID: 1838200591}
-  creditsAnimationWaitTime: 1.5
   scoreText: {fileID: 1885755600}
   newBestText: {fileID: 270688715}
   highScoreText: {fileID: 2144367695}
