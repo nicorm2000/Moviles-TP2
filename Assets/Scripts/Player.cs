@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            gameplayManager.hasStarted = true;
             rotateSpeed *= -1f;
             AudioManager.instance.PlaySound(moveClip);
         }
@@ -18,7 +19,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Rotate(0, 0, rotateSpeed * Time.fixedDeltaTime);
+        if (gameplayManager.hasStarted)
+        {
+            transform.Rotate(0, 0, rotateSpeed * Time.fixedDeltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -6,8 +6,12 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
+    [SerializeField] private GameObject tutorialIcon;
+    [SerializeField] private GameObject tutorialText;
     [SerializeField] private TMP_Text score_Text;
     [SerializeField] private List<int> levelSpeed, levelMax;
+
+    public bool hasStarted = false;
 
     private bool _hasGameFinished;
     private float _score;
@@ -31,19 +35,25 @@ public class GameplayManager : MonoBehaviour
         {
             return;
         }
-        _score += _scoreSpeed * Time.deltaTime;
-        score_Text.text = ((int)_score).ToString();
 
-        if (_score > levelMax[Mathf.Clamp(_currentLevel, 0, levelSpeed.Count - 1)])
+        if (hasStarted)
         {
-            _currentLevel = Mathf.Clamp(_currentLevel + 1, 0, levelSpeed.Count - 1);
-            _scoreSpeed = levelSpeed[_currentLevel];
+            HideTutorial();
+            _score += _scoreSpeed * Time.deltaTime;
+            score_Text.text = ((int)_score).ToString();
+
+            if (_score > levelMax[Mathf.Clamp(_currentLevel, 0, levelSpeed.Count - 1)])
+            {
+                _currentLevel = Mathf.Clamp(_currentLevel + 1, 0, levelSpeed.Count - 1);
+                _scoreSpeed = levelSpeed[_currentLevel];
+            }
         }
     }
 
     public void GameEnded()
     { 
         _hasGameFinished = true;
+        hasStarted = false;
         GameManager.instance.currentScore = (int)_score;
         StartCoroutine(GameOver());
     }
@@ -52,5 +62,11 @@ public class GameplayManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         GameManager.instance.GoToMainMenu();
+    }
+
+    private void HideTutorial() 
+    {
+        tutorialIcon.SetActive(false);
+        tutorialText.SetActive(false);
     }
 }
