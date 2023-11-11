@@ -13,7 +13,7 @@ public class ShopItem
     public bool isUnlocked;
     public int unlocckCost;
     public int unlockedLevel;
-    public SkinInfo[] skinLevel;
+    public SkinInfo[] skins;
 }
 
 [System.Serializable]

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d0a5cf54751c7469230aa4a8f93269, type: 3}
+  m_Name: ShopData
+  m_EditorClassIdentifier: 
+  shopItems:
+  - itemName: 
+    isUnlocked: 0
+    unlocckCost: 0
+    unlockedLevel: 0
+    skins:
+    - unlockCost: 0
+      playerColor: {r: 1, g: 1, b: 1, a: 0}
+      enemyColor: {r: 0, g: 0.8000001, b: 0.8431373, a: 0}
+      circleColor: {r: 1, g: 0.8431373, b: 0, a: 0}
+      bgColor: {r: 0, g: 1, b: 0.8431373, a: 0}
+    - unlockCost: 10
+      playerColor: {r: 0.08627451, g: 0.18039216, b: 0.34509805, a: 0}
+      enemyColor: {r: 0.88235295, g: 0.43137255, b: 0.10980392, a: 0}
+      circleColor: {r: 0.26666668, g: 0.5019608, b: 0.42745098, a: 0}
+      bgColor: {r: 0.92941177, g: 0.6666667, b: 0.36078432, a: 0}
+    - unlockCost: 20
+      playerColor: {r: 0.7490196, g: 0.8, b: 0.6745098, a: 0}
+      enemyColor: {r: 0.7921569, g: 0.30980393, b: 0.2784314, a: 0}
+      circleColor: {r: 0.21960784, g: 0.105882354, b: 0.19215687, a: 0}
+      bgColor: {r: 0.45490196, g: 0.6039216, b: 0.54509807, a: 0}
