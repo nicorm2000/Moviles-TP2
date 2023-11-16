@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System;
 using System.Collections;
 
 public class MainMenuManager : MonoBehaviour
@@ -13,8 +12,17 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private float animationTime;
     [SerializeField] private AnimationCurve speedCurve;
 
+    private ICommand playCommand = new PlayCommand();
+    private ICommand shopCommand = new ShopCommand();
+    private ICommand activateObjectCommand;
+    private ICommand deactivateObjectCommand;
+    private ICommand openURLCommand;
+
     private void Awake()
     {
+        activateObjectCommand = new ActivateObjectCommand(credits);
+        deactivateObjectCommand = new DeactivateObjectCommand(credits);
+
         if (GameManager.instance.isInitialized)
         {
             StartCoroutine(ShowScore());
@@ -66,31 +74,27 @@ public class MainMenuManager : MonoBehaviour
 
     public void ClickedPlay()
     {
-        AudioManager.instance.PlaySound(clickClip);
-        GameManager.instance.GoToGame();
+        playCommand.Execute(clickClip);
     }
 
     public void ClickedShop()
     {
-        AudioManager.instance.PlaySound(clickClip);
-        GameManager.instance.GoToShop();
+        shopCommand.Execute(clickClip);
     }
 
     public void ActivateObject()
     {
-        AudioManager.instance.PlaySound(clickClip);
-        credits.SetActive(true);
+        activateObjectCommand.Execute(clickClip);
     }
 
     public void DeactivateObject()
     {
-        AudioManager.instance.PlaySound(clickClip);
-        credits.SetActive(false);
+        deactivateObjectCommand.Execute(clickClip);
     }
 
     public void OpenURL(string url)
     {
-        AudioManager.instance.PlaySound(clickClip);
-        Application.OpenURL(url);
+        openURLCommand = new OpenURLCommand(url);
+        openURLCommand.Execute(clickClip);
     }
 }
