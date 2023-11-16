@@ -518,6 +518,10 @@ MonoBehaviour:
   minRotateTime: 0.5
   maxRotateTime: 1
   gameplayManager: {fileID: 1189743225}
+  maxiumRange: 11
+  minimumRangeRotationStrategy: 0
+  maxiumRangeRotationStrategy: 2
+  reciprocalMultiplier: 0.1
 --- !u!1 &578153442
 GameObject:
   m_ObjectHideFlags: 0

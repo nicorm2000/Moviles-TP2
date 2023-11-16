@@ -12,16 +12,16 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private float animationTime;
     [SerializeField] private AnimationCurve speedCurve;
 
-    private ICommand playCommand = new PlayCommand();
-    private ICommand shopCommand = new ShopCommand();
-    private ICommand activateObjectCommand;
-    private ICommand deactivateObjectCommand;
-    private ICommand openURLCommand;
+    private ICommand _playCommand = new PlayCommand();
+    private ICommand _shopCommand = new ShopCommand();
+    private ICommand _activateObjectCommand;
+    private ICommand _deactivateObjectCommand;
+    private ICommand _openURLCommand;
 
     private void Awake()
     {
-        activateObjectCommand = new ActivateObjectCommand(credits);
-        deactivateObjectCommand = new DeactivateObjectCommand(credits);
+        _activateObjectCommand = new ActivateObjectCommand(credits);
+        _deactivateObjectCommand = new DeactivateObjectCommand(credits);
 
         if (GameManager.instance.isInitialized)
         {
@@ -74,27 +74,27 @@ public class MainMenuManager : MonoBehaviour
 
     public void ClickedPlay()
     {
-        playCommand.Execute(clickClip);
+        _playCommand.Execute(clickClip);
     }
 
     public void ClickedShop()
     {
-        shopCommand.Execute(clickClip);
+        _shopCommand.Execute(clickClip);
     }
 
     public void ActivateObject()
     {
-        activateObjectCommand.Execute(clickClip);
+        _activateObjectCommand.Execute(clickClip);
     }
 
     public void DeactivateObject()
     {
-        deactivateObjectCommand.Execute(clickClip);
+        _deactivateObjectCommand.Execute(clickClip);
     }
 
     public void OpenURL(string url)
     {
-        openURLCommand = new OpenURLCommand(url);
-        openURLCommand.Execute(clickClip);
+        _openURLCommand = new OpenURLCommand(url);
+        _openURLCommand.Execute(clickClip);
     }
 }

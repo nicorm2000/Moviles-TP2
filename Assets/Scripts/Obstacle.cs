@@ -5,16 +5,22 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private float minRotateSpeed, maxRotateSpeed;
     [SerializeField] private float minRotateTime, maxRotateTime;
     [SerializeField] private GameplayManager gameplayManager;
+    [SerializeField] private int maxiumRange;
+    [SerializeField] private int minimumRangeRotationStrategy;
+    [SerializeField] private int maxiumRangeRotationStrategy;
+    [SerializeField] private float reciprocalMultiplier;
 
     private bool _hasGameFinished;
     private float _currentRotateSpeed;
     private float _currentRotateTime;
     private float _rotateTime;
+    private IRotationStrategy _rotationStrategy;
 
     private void Awake()
     {
         _hasGameFinished = false;
         _currentRotateTime = 0;
+        _rotationStrategy = new ClockwiseRotation();
     }
 
     private void Update()
@@ -25,9 +31,9 @@ public class Obstacle : MonoBehaviour
             if (_currentRotateTime > _rotateTime)
             {
                 _currentRotateTime = 0;
-                _currentRotateSpeed = minRotateSpeed + (maxRotateSpeed - minRotateSpeed) * Random.Range(0, 11) * 0.1f;
-                _rotateTime = minRotateTime + (maxRotateTime - minRotateTime) * Random.Range(0, 11) * 0.1f;
-                _currentRotateSpeed *= Random.Range(0, 2) == 0 ? 1f : -1f;
+                _currentRotateSpeed = RandomRotateSpeed();
+                _rotateTime = RandomRotateTime();
+                _rotationStrategy = RandomRotateStrategy();
             }
         }
     }
@@ -40,7 +46,22 @@ public class Obstacle : MonoBehaviour
         {
             return;
         }
-        transform.Rotate(0, 0, _currentRotateSpeed * Time.fixedDeltaTime);
+            _rotationStrategy.Rotate(transform, _currentRotateSpeed, Time.fixedDeltaTime);
         }
+    }
+
+    private float RandomRotateSpeed()
+    {
+        return minRotateSpeed + (maxRotateSpeed - minRotateSpeed) * Random.Range(0, maxiumRange) * reciprocalMultiplier;
+    }
+
+    private float RandomRotateTime()
+    {
+        return minRotateTime + (maxRotateTime - minRotateTime) * Random.Range(0, maxiumRange) * reciprocalMultiplier;
+    }
+
+    private IRotationStrategy RandomRotateStrategy()
+    {
+        return Random.Range(minimumRangeRotationStrategy, maxiumRangeRotationStrategy) == 0 ? new ClockwiseRotation() : new CounterClockwiseRotation();
     }
 }
