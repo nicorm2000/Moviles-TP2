@@ -1,4 +1,5 @@
 using UnityEngine;
+using CandyCoded.HapticFeedback;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            HapticFeedback.LightFeedback();
             gameplayManager.hasStarted = true;
             rotateSpeed *= -1f;
             AudioManager.instance.PlaySound(moveClip);

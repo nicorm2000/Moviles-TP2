@@ -1,4 +1,5 @@
 using UnityEngine;
+using CandyCoded.HapticFeedback;
 
 public class OpenURLCommand : ICommand
 {
@@ -12,6 +13,7 @@ public class OpenURLCommand : ICommand
     public void Execute(AudioClip clickClip)
     {
         AudioManager.instance.PlaySound(clickClip);
+        HapticFeedback.MediumFeedback();
         Application.OpenURL(url);
     }
 }
