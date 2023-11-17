@@ -1,14 +1,13 @@
 using UnityEngine;
-using CandyCoded.HapticFeedback;
 
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private AudioClip clickClip;
 
-    public void ReturnToMainMenu()
+    private ICommand _mainMenuCommand = new MainMenuCommand();
+
+    public void ClickedMainMenu()
     {
-        AudioManager.instance.PlaySound(clickClip);
-        HapticFeedback.MediumFeedback();
-        GameManager.instance.GoToMainMenu();
+        _mainMenuCommand.Execute(clickClip);
     }
 }

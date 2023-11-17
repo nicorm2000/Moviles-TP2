@@ -378,7 +378,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 545962204}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
-        m_MethodName: ReturnToMainMenu
+        m_MethodName: ClickedMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
