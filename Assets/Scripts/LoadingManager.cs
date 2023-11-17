@@ -12,7 +12,6 @@ public class LoadingManager : MonoBehaviour
 
     private void Awake()
     {
-        // Ensure there is only one instance of the LoadingScreen
         if (Instance == null)
         {
             Instance = this;
@@ -44,9 +43,9 @@ public class LoadingManager : MonoBehaviour
 
             yield return new WaitForSeconds(waitTimer);
         }
-        Debug.Log("Before wait timer");
+
         yield return new WaitForSeconds(waitTimer);
-        Debug.Log("After wait timer");
+
         asyncLoad.allowSceneActivation = true;
     }
 }
