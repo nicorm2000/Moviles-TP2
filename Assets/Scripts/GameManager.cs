@@ -47,18 +47,15 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         LoadingManager.Instance.LoadScene(_mainMenu);
-        //SceneManager.LoadScene(_mainMenu);
     }
 
     public void GoToGame()
     {
         LoadingManager.Instance.LoadScene(_game);
-        //SceneManager.LoadScene(_game);
     }
 
     public void GoToShop()
     {
         LoadingManager.Instance.LoadScene(_shop);
-        //SceneManager.LoadScene(_shop);
     }
 }
