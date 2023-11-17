@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 702ba2b367dcf134c9059e0c24e13476
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: dfc84ae28cc63954fbd395c47f131760
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

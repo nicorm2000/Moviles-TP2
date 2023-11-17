@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private const string _mainMenu = "MainMenu"; 
+    private const string _game = "Game"; 
+    private const string _shop = "Shop"; 
     private string _highScoreKey = "HighScore";
 
     private void Awake()
@@ -41,22 +44,21 @@ public class GameManager : MonoBehaviour
         isInitialized = false;
     }
 
-    private const string _mainMenu = "MainMenu"; 
-    private const string _game = "Game"; 
-    private const string _shop = "Shop"; 
-
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene(_mainMenu);
+        LoadingManager.Instance.LoadScene(_mainMenu);
+        //SceneManager.LoadScene(_mainMenu);
     }
 
     public void GoToGame()
     {
-        SceneManager.LoadScene(_game);
+        LoadingManager.Instance.LoadScene(_game);
+        //SceneManager.LoadScene(_game);
     }
 
     public void GoToShop()
     {
-        SceneManager.LoadScene(_shop);
+        LoadingManager.Instance.LoadScene(_shop);
+        //SceneManager.LoadScene(_shop);
     }
 }
