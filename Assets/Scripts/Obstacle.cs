@@ -4,7 +4,6 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private float minRotateSpeed, maxRotateSpeed;
     [SerializeField] private float minRotateTime, maxRotateTime;
-    [SerializeField] private GameplayManager gameplayManager;
     [SerializeField] private int maxiumRange;
     [SerializeField] private int minimumRangeRotationStrategy;
     [SerializeField] private int maxiumRangeRotationStrategy;
@@ -25,7 +24,7 @@ public class Obstacle : MonoBehaviour
 
     private void Update()
     {
-        if (gameplayManager.hasStarted)
+        if (GameplayManager.hasStarted)
         {
             _currentRotateTime += Time.deltaTime;
             if (_currentRotateTime > _rotateTime)
@@ -40,7 +39,7 @@ public class Obstacle : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameplayManager.hasStarted)
+        if (GameplayManager.hasStarted)
         {
             if (_hasGameFinished)
         {

@@ -2,11 +2,26 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    [SerializeField] private float minFallSpeed;
+    [SerializeField] private float maxFallSpeed;
+
+    private float fallSpeed;
+
+    private void Start()
+    {
+        fallSpeed = Random.Range(minFallSpeed, maxFallSpeed);
+    }
+
     private void Update()
     {
-        if (transform.position.y < CoinManager.Instance.despawnYPosition)
+        if (GameplayManager.hasStarted)
         {
-            gameObject.SetActive(false);
+            transform.position += Vector3.down * Time.deltaTime * fallSpeed;
+
+            if (transform.position.y < CoinManager.Instance.despawnYPosition)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 

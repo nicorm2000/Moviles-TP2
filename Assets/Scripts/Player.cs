@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             HapticFeedback.LightFeedback();
-            gameplayManager.hasStarted = true;
+            GameplayManager.hasStarted = true;
             rotateSpeed *= -1f;
             AudioManager.instance.PlaySound(moveClip);
         }
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameplayManager.hasStarted)
+        if (GameplayManager.hasStarted)
         {
             transform.Rotate(0, 0, rotateSpeed * Time.fixedDeltaTime);
         }

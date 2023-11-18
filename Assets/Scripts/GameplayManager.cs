@@ -13,7 +13,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float tutorialSemiCircleTime;
     [SerializeField] private float gameOverTime;
 
-    public bool hasStarted = false;
+    public static bool hasStarted = false;
 
     private bool _hasGameFinished;
     private float _score;

@@ -5,10 +5,10 @@ public class CoinManager : MonoBehaviour
 {
     public static CoinManager Instance;
 
-    [SerializeField] private GameObject coinPrefab;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private float spawnInterval = 2f;
-    [SerializeField] private float spawnXRange = 4f;
+    [SerializeField] private float minSpawnInterval;
+    [SerializeField] private float maxSpawnInterval;
+    [SerializeField] private float spawnXRange;
     public float despawnYPosition = -5f;
 
     private void Awake()
@@ -23,9 +23,13 @@ public class CoinManager : MonoBehaviour
 
     private IEnumerator SpawnCoins()
     {
+        yield return new WaitUntil(() => GameplayManager.hasStarted);
+
         while (true)
         {
-            yield return new WaitForSeconds(spawnInterval);
+            float randomSpawnInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
+
+            yield return new WaitForSeconds(randomSpawnInterval);
             SpawnCoin();
         }
     }
