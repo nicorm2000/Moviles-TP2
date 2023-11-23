@@ -5,6 +5,7 @@ using TMPro;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject credits;
+    [SerializeField] private GameObject pluginViewer;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text newBestText;
     [SerializeField] private TMP_Text highScoreText;
@@ -21,7 +22,9 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {
         _activateObjectCommand = new ActivateObjectCommand(credits);
+        _activateObjectCommand = new ActivateObjectCommand(pluginViewer);
         _deactivateObjectCommand = new DeactivateObjectCommand(credits);
+        _deactivateObjectCommand = new DeactivateObjectCommand(pluginViewer);
 
         if (GameManager.instance.isInitialized)
         {
