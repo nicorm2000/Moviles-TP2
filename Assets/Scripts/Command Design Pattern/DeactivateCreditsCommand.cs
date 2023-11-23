@@ -1,11 +1,11 @@
 using UnityEngine;
 using CandyCoded.HapticFeedback;
 
-public class ActivateObjectCommand : ICommand
+public class DeactivateCreditsCommand : ICommand
 {
     private GameObject credits;
 
-    public ActivateObjectCommand(GameObject credits)
+    public DeactivateCreditsCommand(GameObject credits)
     {
         this.credits = credits;
     }
@@ -14,6 +14,6 @@ public class ActivateObjectCommand : ICommand
     {
         AudioManager.instance.PlaySound(clickClip);
         HapticFeedback.MediumFeedback();
-        credits.SetActive(true);
+        credits.SetActive(false);
     }
 }

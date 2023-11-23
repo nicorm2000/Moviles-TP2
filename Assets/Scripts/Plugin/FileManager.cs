@@ -8,13 +8,15 @@ public static class FileManager
     private static AndroidJavaClass fileManager = null;
     private static AndroidJavaObject fileManagerInstance = null;
 
-    public static void ReadFile()
+    public static string ReadFile()
     {
         if (fileManagerInstance == null)
         {
             Init();
         }
         string txt = fileManagerInstance?.Call<string>("ReadFile");
+
+        return txt;
     }
 
     public static void WriteFile(string data)
@@ -28,6 +30,7 @@ public static class FileManager
 
     public static void DeleteFile()
     {
+        PopUp.Init();
         PopUp.ShowAlertDialog(new string[] { "Are you sure you want to delete logs?", "deleting logs.txt", "Delete", "Cancel" },
             (index) =>
             {

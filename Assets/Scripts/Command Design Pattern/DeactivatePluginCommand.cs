@@ -1,19 +1,19 @@
 using UnityEngine;
 using CandyCoded.HapticFeedback;
 
-public class DeactivateObjectCommand : ICommand
+public class DeactivatePluginCommand : ICommand
 {
-    private GameObject credits;
+    private GameObject plugin;
 
-    public DeactivateObjectCommand(GameObject credits)
+    public DeactivatePluginCommand(GameObject plugin)
     {
-        this.credits = credits;
+        this.plugin = plugin;
     }
 
     public void Execute(AudioClip clickClip)
     {
         AudioManager.instance.PlaySound(clickClip);
         HapticFeedback.MediumFeedback();
-        credits.SetActive(false);
+        plugin.SetActive(false);
     }
 }

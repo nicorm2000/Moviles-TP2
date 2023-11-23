@@ -28,18 +28,19 @@ public static class PopUp
     private static string message = "MessageText";
     private static string button1 = "Close";
 
-    public static void ShowPopup()
+    public static void Init()
     {
-#if UNITY_ANDROID && !UNITY_EDITOR
         if (popupManagerInstance == null)
         {
-            Init();
-        }
-        ShowAlertDialog(new string[] { title + Application.version, message, button1 }, (int obj) =>
-        {
-            Debug.Log("Local Handler called: " + obj);
-        });
+#if UNITY_ANDROID && !UNITY_EDITOR
+        popupManager = new AndroidJavaClass(packName + "." + loggerClassName);
+        AndroidJavaClass unityJC = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject activity = unityJC.GetStatic<AndroidJavaObject>("currentActivity");
+        popupManager.SetStatic("mainActivity", activity);
+
+        popupManagerInstance = popupManager.CallStatic<AndroidJavaObject>("GetInstance");
 #endif
+        }
     }
 
     public static void ShowAlertDialog(string[] strings, System.Action<int> handler = null)
@@ -58,17 +59,5 @@ public static class PopUp
         {
             Debug.LogWarning("AlertView not supported on this platform");
         }
-    }
-
-    private static void Init()
-    {
-#if UNITY_ANDROID && !UNITY_EDITOR
-        popupManager = new AndroidJavaClass(packName + "." + loggerClassName);
-        AndroidJavaClass unityJC = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        AndroidJavaObject activity = unityJC.GetStatic<AndroidJavaObject>("currentActivity");
-        popupManager.SetStatic("mainAct", activity);
-
-        popupManagerInstance = popupManager.CallStatic<AndroidJavaObject>("GetInstance");
-#endif
     }
 }

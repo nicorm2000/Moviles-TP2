@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -12,19 +13,23 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private AudioClip clickClip;
     [SerializeField] private float animationTime;
     [SerializeField] private AnimationCurve speedCurve;
+    [SerializeField] private ScrollRect scrollRect;
+    [SerializeField] private TMPro.TMP_InputField inputField;
 
     private ICommand _playCommand = new PlayCommand();
     private ICommand _shopCommand = new ShopCommand();
-    private ICommand _activateObjectCommand;
-    private ICommand _deactivateObjectCommand;
+    private ICommand _activateCreditsCommand;
+    private ICommand _deactivateCreditstCommand;
+    private ICommand _activatePluginCommand;
+    private ICommand _deactivatePluginCommand;
     private ICommand _openURLCommand;
 
     private void Awake()
     {
-        _activateObjectCommand = new ActivateObjectCommand(credits);
-        _activateObjectCommand = new ActivateObjectCommand(pluginViewer);
-        _deactivateObjectCommand = new DeactivateObjectCommand(credits);
-        _deactivateObjectCommand = new DeactivateObjectCommand(pluginViewer);
+        _activateCreditsCommand = new ActivateCreditsCommand(credits);
+        _deactivateCreditstCommand = new DeactivateCreditsCommand(credits);
+        _activatePluginCommand = new ActivatePluginCommand(pluginViewer);
+        _deactivatePluginCommand = new DeactivatePluginCommand(pluginViewer);
 
         if (GameManager.instance.isInitialized)
         {
@@ -75,6 +80,24 @@ public class MainMenuManager : MonoBehaviour
         scoreText.text = tempScore.ToString();
     }
 
+    public void Read()
+    {
+        FileManager.ReadFile();
+    }
+
+    public void Write()
+    {
+        if (inputField.text != string.Empty)
+        {
+            FileManager.WriteFile(inputField.text + "\n");
+        }
+    }
+
+    public void Delete()
+    {
+        FileManager.DeleteFile();
+    }
+
     public void ClickedPlay()
     {
         _playCommand.Execute(clickClip);
@@ -85,14 +108,24 @@ public class MainMenuManager : MonoBehaviour
         _shopCommand.Execute(clickClip);
     }
 
-    public void ActivateObject()
+    public void ActivateCredits()
     {
-        _activateObjectCommand.Execute(clickClip);
+        _activateCreditsCommand.Execute(clickClip);
     }
 
-    public void DeactivateObject()
+    public void DeactivateCredits()
     {
-        _deactivateObjectCommand.Execute(clickClip);
+        _deactivateCreditstCommand.Execute(clickClip);
+    }
+
+    public void ActivatePlugin()
+    {
+        _activatePluginCommand.Execute(clickClip);
+    }
+
+    public void DeactivatePlugin() 
+    {
+        _deactivatePluginCommand.Execute(clickClip);
     }
 
     public void OpenURL(string url)
