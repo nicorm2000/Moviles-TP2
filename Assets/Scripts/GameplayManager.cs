@@ -92,7 +92,6 @@ public class GameplayManager : MonoBehaviour
                     _unlockedAchievement4 = true;
                     Debug.Log("Unlocked Achievement 4");
                 }
-
             }
 
             if (_score > levelMax[Mathf.Clamp(_currentLevel, 0, levelSpeed.Count - 1)])
