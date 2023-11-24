@@ -658,7 +658,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "DON'T LET \nTHE SEMI CIRCLE \nTOUCH YOU!"
+  m_text: "DON'T LET \nTHE HALF DOT\nTOUCH YOU!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: da371671081eaf64d9092d863dd34de2, type: 2}
   m_sharedMaterial: {fileID: -3016912232160574398, guid: da371671081eaf64d9092d863dd34de2, type: 2}
