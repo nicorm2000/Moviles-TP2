@@ -13,7 +13,7 @@ public class ActivateCreditsCommand : ICommand
     public void Execute(AudioClip clickClip)
     {
         AudioManager.instance.PlaySound(clickClip);
-        HapticFeedback.MediumFeedback();
+        HapticFeedback.HeavyFeedback();
         credits.SetActive(true);
     }
 }

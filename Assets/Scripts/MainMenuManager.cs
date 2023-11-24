@@ -14,7 +14,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private float animationTime;
     [SerializeField] private AnimationCurve speedCurve;
     [SerializeField] private ScrollRect scrollRect;
-    [SerializeField] private TMPro.TMP_InputField inputField;
+    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private TMP_Text inputText;
 
     private ICommand _playCommand = new PlayCommand();
     private ICommand _shopCommand = new ShopCommand();
@@ -82,7 +83,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void Read()
     {
-        FileManager.ReadFile();
+        inputText.text = FileManager.ReadFile();
     }
 
     public void Write()

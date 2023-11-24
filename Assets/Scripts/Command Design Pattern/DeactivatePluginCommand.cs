@@ -13,7 +13,7 @@ public class DeactivatePluginCommand : ICommand
     public void Execute(AudioClip clickClip)
     {
         AudioManager.instance.PlaySound(clickClip);
-        HapticFeedback.MediumFeedback();
+        HapticFeedback.HeavyFeedback();
         plugin.SetActive(false);
     }
 }

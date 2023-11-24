@@ -13,7 +13,7 @@ public class OpenURLCommand : ICommand
     public void Execute(AudioClip clickClip)
     {
         AudioManager.instance.PlaySound(clickClip);
-        HapticFeedback.MediumFeedback();
+        HapticFeedback.HeavyFeedback();
         Application.OpenURL(url);
     }
 }

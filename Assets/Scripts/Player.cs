@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            HapticFeedback.LightFeedback();
+            HapticFeedback.MediumFeedback();
             GameplayManager.hasStarted = true;
             rotateSpeed *= -1f;
             AudioManager.instance.PlaySound(moveClip);

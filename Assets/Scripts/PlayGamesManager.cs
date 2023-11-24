@@ -3,10 +3,13 @@ using GooglePlayGames.BasicApi;
 using GooglePlayGames;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class PlayGamesManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI detailsText;
+
+    private float changeScene = 2f;
 
     private void Start()
     {
@@ -37,6 +40,14 @@ public class PlayGamesManager : MonoBehaviour
             // Disable your integration with Play Games Services or show a login button
             // to ask users to sign-in. Clicking it should call
             // PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
+            StartCoroutine(NextSceneTimer());
         }
+    }
+
+    private IEnumerator NextSceneTimer()
+    {
+        yield return new WaitForSeconds(changeScene);
+
+        SceneManager.LoadScene("MainMenu");
     }
 }
