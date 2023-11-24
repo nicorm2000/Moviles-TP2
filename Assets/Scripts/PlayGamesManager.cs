@@ -45,12 +45,12 @@ public class PlayGamesManager : MonoBehaviour
     #region ACHIEVEMENTS
     public static void UnlockAchievemt(string id)
     {
-        Social.ReportProgress(id, 100, success => { });
+        PlayGamesPlatform.Instance.ReportProgress(id, 100, success => { });
     }
 
     public static void ShowAchievementsUI()
     {
-        Social.ShowAchievementsUI();
+        PlayGamesPlatform.Instance.ShowAchievementsUI();
     }
     #endregion
 }

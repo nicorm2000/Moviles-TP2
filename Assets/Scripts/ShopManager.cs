@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,12 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private PlayerData playerData;
     [SerializeField] private Image playerPreviewImage;
     [SerializeField] private TMP_Text coinsText;
+    [SerializeField] private TMP_Text skinValue;
+    [SerializeField] private TMP_Text skinName;
+    [SerializeField] private TextMeshProUGUI unlockSkinVisualButton;
+    [SerializeField] private Color unlockSkinVisualButtonActive;
+    [SerializeField] private Color unlockSkinVisualButtonInactive;
+    [SerializeField] private float canNotBuySkin;
 
     private int currentSkinIndex;
     private ICommand _mainMenuCommand = new MainMenuCommand();
@@ -37,6 +44,7 @@ public class ShopManager : MonoBehaviour
             else
             {
                 Debug.Log("Not enough coins to purchase the skin.");
+                StartCoroutine(SkinTooExpensive());
             }
         }
         else
@@ -72,7 +80,17 @@ public class ShopManager : MonoBehaviour
     private void UpdateUI()
     {
         playerPreviewImage.sprite = playerData.skinVariants[currentSkinIndex].skinSprite;
-        coinsText.text = "Coins: " + PlayerPrefs.GetInt("Coins", 0);
+        skinName.text = playerData.skinVariants[currentSkinIndex].skinName;
+        skinValue.text = playerData.skinVariants[currentSkinIndex].cost.ToString();
+        coinsText.text = PlayerPrefs.GetInt("Coins", 0).ToString();
+    }
+
+    private IEnumerator SkinTooExpensive()
+    {
+        unlockSkinVisualButton = GetComponent<TextMeshProUGUI>();
+        unlockSkinVisualButton.color = unlockSkinVisualButtonInactive;
+        yield return new WaitForSeconds(canNotBuySkin);
+        unlockSkinVisualButton.color = unlockSkinVisualButtonActive;
     }
 
     public void ClickedMainMenu()
