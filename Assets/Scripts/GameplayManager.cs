@@ -93,17 +93,18 @@ public class GameplayManager : MonoBehaviour
                     Debug.Log("Unlocked Achievement 4");
                 }
 
-                if (_score > levelMax[Mathf.Clamp(_currentLevel, 0, levelSpeed.Count - 1)])
-                {
-                    _currentLevel = Mathf.Clamp(_currentLevel + 1, 0, levelSpeed.Count - 1);
-                    _scoreSpeed = levelSpeed[_currentLevel];
-                }
+            }
+
+            if (_score > levelMax[Mathf.Clamp(_currentLevel, 0, levelSpeed.Count - 1)])
+            {
+                _currentLevel = Mathf.Clamp(_currentLevel + 1, 0, levelSpeed.Count - 1);
+                _scoreSpeed = levelSpeed[_currentLevel];
             }
         }
     }
 
     public void GameEnded()
-    { 
+    {
         _hasGameFinished = true;
         hasStarted = false;
         GameManager.instance.currentScore = (int)_score;
@@ -118,7 +119,7 @@ public class GameplayManager : MonoBehaviour
         GameManager.instance.GoToMainMenu();
     }
 
-    private void HideTutorial() 
+    private void HideTutorial()
     {
         tutorialIcon.SetActive(false);
         tutorialText.SetActive(false);
