@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e638c2a2502d81746932bbc7c18b8786, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  skinVariants:
+  - skinName: White
+    skinSprite: {fileID: 21300000, guid: 4489bfda368b6f24f81de6191fea546a, type: 3}
+    cost: 0
+  - skinName: Black
+    skinSprite: {fileID: 21300000, guid: c83596c5c4257134d8746b3626602b35, type: 3}
+    cost: 0
+  - skinName: Blue
+    skinSprite: {fileID: 21300000, guid: 0a24c3f5ea3436249995b91dcb1ccf4b, type: 3}
+    cost: 0
+  - skinName: Cyan
+    skinSprite: {fileID: 21300000, guid: 99f9ce4f1bd006f4bb204eb90ca0445a, type: 3}
+    cost: 0
+  - skinName: Green
+    skinSprite: {fileID: 21300000, guid: 641a1cb5ee60f3c4bba15706a0f0ff98, type: 3}
+    cost: 0
+  - skinName: Magenta
+    skinSprite: {fileID: 21300000, guid: eed8162c759835147b35d0cd147c7067, type: 3}
+    cost: 0
+  - skinName: Red
+    skinSprite: {fileID: 21300000, guid: 95cce7809c774d74ea3366cf67ae89b9, type: 3}
+    cost: 0
+  equippedSkinIndex: 0

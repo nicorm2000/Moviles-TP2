@@ -1089,6 +1089,7 @@ MonoBehaviour:
   levelMax: 320000009600000090010000e8030000d0070000
   tutorialSemiCircleTime: 3
   gameOverTime: 2
+  deathClip: {fileID: 8300000, guid: 1dad8968a45ec3c48a582ee1c374d907, type: 3}
 --- !u!1 &1236261743
 GameObject:
   m_ObjectHideFlags: 0

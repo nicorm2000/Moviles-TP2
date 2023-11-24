@@ -1,4 +1,3 @@
-using GooglePlayGames.BasicApi;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,6 +12,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private List<int> levelSpeed, levelMax;
     [SerializeField] private float tutorialSemiCircleTime;
     [SerializeField] private float gameOverTime;
+    [SerializeField] private AudioClip deathClip;
 
     public static bool hasStarted = false;
 
@@ -108,6 +108,7 @@ public class GameplayManager : MonoBehaviour
         hasStarted = false;
         GameManager.instance.currentScore = (int)_score;
         Debug.Log("Game Ended");
+        AudioManager.instance.PlaySound(deathClip);
         StartCoroutine(GameOver());
     }
 
