@@ -59,7 +59,7 @@ public class GameplayManager : MonoBehaviour
             _score += _scoreSpeed * Time.deltaTime;
             score_Text.text = ((int)_score).ToString();
 
-            if (PlayGamesManager.signedIn)
+            if (Social.localUser.authenticated)
             {
                 //Achievement 100 score
                 if (_score >= _scoreAchievement1 && !_unlockedAchievement1)
