@@ -1,3 +1,4 @@
+using GooglePlayGames;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,10 @@ public class ShopManager : MonoBehaviour
     private int currentSkinIndex;
     private ICommand _mainMenuCommand = new MainMenuCommand();
 
+    #region ACHIEVEMENTS
+    private bool _unlockedAchievement5 = false;
+    private bool _firstPurchase = false;
+    #endregion
     private void Start()
     {
         currentSkinIndex = playerData.equippedSkinIndex;
@@ -38,6 +43,18 @@ public class ShopManager : MonoBehaviour
 
             GameManager.instance.playerData.skinVariants[currentSkinIndex].isPurchased = true;
             GameManager.instance.playerData.equippedSkinIndex = currentSkinIndex;
+
+            if (PlayGamesPlatform.Instance.localUser.authenticated)
+            {
+                //Achievement Make first purchase in the store
+                if (!_unlockedAchievement5 && !_firstPurchase)
+                {
+                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_big_money);
+                    _unlockedAchievement5 = true;
+                    _firstPurchase = true;
+                    Debug.Log("Unlocked Achievement 5");
+                }
+            }
             UpdateUI();
         }
         else

@@ -17,6 +17,13 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private TMP_Text coinsText;
     [SerializeField] private PlayerData playerData;
     [SerializeField] private SpriteRenderer playerSkin;
+    [SerializeField] private GameObject playerTrailWhite;
+    [SerializeField] private GameObject playerTrailBlack;
+    [SerializeField] private GameObject playerTrailBlue;
+    [SerializeField] private GameObject playerTrailCyan;
+    [SerializeField] private GameObject playerTrailGreen;
+    [SerializeField] private GameObject playerTrailMagenta;
+    [SerializeField] private GameObject playerTrailRed;
 
     public static bool hasStarted = false;
 
@@ -48,6 +55,31 @@ public class GameplayManager : MonoBehaviour
         _scoreSpeed = levelSpeed[_currentLevel];
 
         playerSkin.sprite = GameManager.instance.playerData.skinVariants[GameManager.instance.playerData.equippedSkinIndex].skinSprite;
+
+        switch (GameManager.instance.playerData.equippedSkinIndex)
+        {
+            case 0:
+                playerTrailWhite.SetActive(true);
+                break;
+            case 1:
+                playerTrailBlack.SetActive(true);
+                break;
+            case 2:
+                playerTrailBlue.SetActive(true);
+                break;
+            case 3:
+                playerTrailCyan.SetActive(true);
+                break;
+            case 4:
+                playerTrailGreen.SetActive(true);
+                break;
+            case 5:
+                playerTrailMagenta.SetActive(true);
+                break;
+            case 6:
+                playerTrailRed.SetActive(true);
+                break;
+        }
     }
 
     private void Update()
