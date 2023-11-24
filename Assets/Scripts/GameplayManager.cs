@@ -1,3 +1,4 @@
+using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,6 +14,8 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float tutorialSemiCircleTime;
     [SerializeField] private float gameOverTime;
     [SerializeField] private AudioClip deathClip;
+    [SerializeField] private TMP_Text coinsText;
+    [SerializeField] private PlayerData playerData;
 
     public static bool hasStarted = false;
 
@@ -42,10 +45,19 @@ public class GameplayManager : MonoBehaviour
         _currentLevel = 0;
         score_Text.text = ((int)_score).ToString();
         _scoreSpeed = levelSpeed[_currentLevel];
+
+        if (playerData == null)
+        {
+            Debug.LogError("PlayerData is not assigned in GameplayManager.");
+        }
+
+        playerData.equippedSkinIndex = PlayerPrefs.GetInt("EquippedSkinIndex", 0);
     }
 
     private void Update()
     {
+        coinsText.text = PlayerPrefs.GetInt("Coins", 0).ToString();
+
         if (_hasGameFinished)
         {
             return;
@@ -59,7 +71,7 @@ public class GameplayManager : MonoBehaviour
             _score += _scoreSpeed * Time.deltaTime;
             score_Text.text = ((int)_score).ToString();
 
-            if (Social.localUser.authenticated)
+            if (PlayGamesPlatform.Instance.localUser.authenticated)
             {
                 //Achievement 100 score
                 if (_score >= _scoreAchievement1 && !_unlockedAchievement1)
@@ -72,7 +84,7 @@ public class GameplayManager : MonoBehaviour
                 //Achievement 1000 score
                 if (_score >= _scoreAchievement2 && !_unlockedAchievement2)
                 {
-                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_10000_club);
                     _unlockedAchievement2 = true;
                     Debug.Log("Unlocked Achievement 2");
                 }
@@ -80,7 +92,7 @@ public class GameplayManager : MonoBehaviour
                 //Achievement 5000 score
                 if (_score >= _scoreAchievement3 && !_unlockedAchievement3)
                 {
-                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_5000_club);
                     _unlockedAchievement3 = true;
                     Debug.Log("Unlocked Achievement 3");
                 }
@@ -88,7 +100,7 @@ public class GameplayManager : MonoBehaviour
                 //Achievement 10000 score
                 if (_score >= _scoreAchievement4 && !_unlockedAchievement4)
                 {
-                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_10000_club);
                     _unlockedAchievement4 = true;
                     Debug.Log("Unlocked Achievement 4");
                 }

@@ -13,4 +13,5 @@ public class SkinVariant
     public string skinName;
     public Sprite skinSprite;
     public int cost;
+    public bool isPurchased;
 }

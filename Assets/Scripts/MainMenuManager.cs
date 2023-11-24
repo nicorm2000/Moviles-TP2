@@ -16,6 +16,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TMP_Text inputText;
+    [SerializeField] private TMP_Text coinsText;
 
     private ICommand _playCommand = new PlayCommand();
     private ICommand _shopCommand = new ShopCommand();
@@ -42,6 +43,7 @@ public class MainMenuManager : MonoBehaviour
             newBestText.gameObject.SetActive(false);
             highScoreText.text = GameManager.instance.highScore.ToString();
         }
+        coinsText.text = PlayerPrefs.GetInt("Coins", 0).ToString();
     }
 
     private IEnumerator ShowScore()

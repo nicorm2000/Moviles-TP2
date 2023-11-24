@@ -1,4 +1,3 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +5,15 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private AudioClip clickClip;
+    [SerializeField] private AudioClip error;
+    [SerializeField] private AudioClip buy;
     [SerializeField] private PlayerData playerData;
     [SerializeField] private Image playerPreviewImage;
     [SerializeField] private TMP_Text coinsText;
     [SerializeField] private TMP_Text skinValue;
     [SerializeField] private TMP_Text skinName;
-    [SerializeField] private TextMeshProUGUI unlockSkinVisualButton;
-    [SerializeField] private Color unlockSkinVisualButtonActive;
-    [SerializeField] private Color unlockSkinVisualButtonInactive;
+    [SerializeField] private Button purchase;
+    [SerializeField] private Button equip;
     [SerializeField] private float canNotBuySkin;
 
     private int currentSkinIndex;
@@ -27,36 +27,32 @@ public class ShopManager : MonoBehaviour
 
     public void PurchaseSkin()
     {
-        if (currentSkinIndex < playerData.skinVariants.Length - 1)
+        int currentCoins = PlayerPrefs.GetInt("Coins", 0);
+        int skinCost = playerData.skinVariants[currentSkinIndex].cost;
+
+        if (currentCoins >= skinCost)
         {
-            int currentCoins = PlayerPrefs.GetInt("Coins", 0);
-            int skinCost = playerData.skinVariants[currentSkinIndex + 1].cost;
+            AudioManager.instance.PlaySound(buy);
+            currentCoins -= skinCost;
+            PlayerPrefs.SetInt("Coins", currentCoins);
 
-            if (currentCoins >= skinCost)
-            {
-                currentCoins -= skinCost;
-                PlayerPrefs.SetInt("Coins", currentCoins);
-
-                currentSkinIndex++;
-                playerData.equippedSkinIndex = currentSkinIndex;
-                UpdateUI();
-            }
-            else
-            {
-                Debug.Log("Not enough coins to purchase the skin.");
-                StartCoroutine(SkinTooExpensive());
-            }
+            playerData.skinVariants[currentSkinIndex].isPurchased = true;
+            playerData.equippedSkinIndex = currentSkinIndex;
+            UpdateUI();
         }
         else
         {
-            Debug.Log("All skins are already purchased.");
+            Debug.Log("Not enough coins to purchase the skin.");
+            AudioManager.instance.PlaySound(error);
         }
     }
 
     public void EquipSkin()
     {
+        AudioManager.instance.PlaySound(clickClip);
         playerData.equippedSkinIndex = currentSkinIndex;
         UpdateUI();
+        Debug.Log("Skin equipped: " + playerData.skinVariants[currentSkinIndex].skinName);
     }
 
     public void NextSkin()
@@ -77,20 +73,30 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    public void OnAddCoinsButtonClicked()
+    {
+        AddCoins(10);
+    }
+
+    private void AddCoins(int amount)
+    {
+        int currentCoins = PlayerPrefs.GetInt("Coins", 0);
+        currentCoins += amount;
+        PlayerPrefs.SetInt("Coins", currentCoins);
+        UpdateUI();
+    }
+
     private void UpdateUI()
     {
-        playerPreviewImage.sprite = playerData.skinVariants[currentSkinIndex].skinSprite;
+        SkinVariant currentSkin = playerData.skinVariants[currentSkinIndex];
+
+        playerPreviewImage.sprite = currentSkin.skinSprite;
         skinName.text = playerData.skinVariants[currentSkinIndex].skinName;
         skinValue.text = playerData.skinVariants[currentSkinIndex].cost.ToString();
         coinsText.text = PlayerPrefs.GetInt("Coins", 0).ToString();
-    }
 
-    private IEnumerator SkinTooExpensive()
-    {
-        unlockSkinVisualButton = GetComponent<TextMeshProUGUI>();
-        unlockSkinVisualButton.color = unlockSkinVisualButtonInactive;
-        yield return new WaitForSeconds(canNotBuySkin);
-        unlockSkinVisualButton.color = unlockSkinVisualButtonActive;
+        purchase.interactable = !currentSkin.isPurchased;
+        equip.interactable = currentSkin.isPurchased;
     }
 
     public void ClickedMainMenu()

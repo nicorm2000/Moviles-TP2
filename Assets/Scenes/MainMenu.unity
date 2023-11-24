@@ -2699,6 +2699,7 @@ MonoBehaviour:
   scrollRect: {fileID: 1136042608}
   inputField: {fileID: 342196208}
   inputText: {fileID: 63782750}
+  coinsText: {fileID: 1269091835}
 --- !u!1 &664572602
 GameObject:
   m_ObjectHideFlags: 0
