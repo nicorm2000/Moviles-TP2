@@ -37,17 +37,11 @@ public class PlayGamesManager : MonoBehaviour
         else
         {
             detailsText.text = "Sign In failed!";
-            // Disable your integration with Play Games Services or show a login button
-            // to ask users to sign-in. Clicking it should call
-            // PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
-            StartCoroutine(NextSceneTimer());
         }
     }
 
-    private IEnumerator NextSceneTimer()
+    public void LoginFailed()
     {
-        yield return new WaitForSeconds(changeScene);
-
         SceneManager.LoadScene("MainMenu");
     }
 }
