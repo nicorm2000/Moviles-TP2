@@ -1156,6 +1156,7 @@ MonoBehaviour:
   deathClip: {fileID: 8300000, guid: 1dad8968a45ec3c48a582ee1c374d907, type: 3}
   coinsText: {fileID: 2072625104}
   playerData: {fileID: 11400000, guid: 4c4d2bfb9f9ff194980d9719bc61d7b7, type: 2}
+  playerSkin: {fileID: 1823300057}
 --- !u!1 &1236261743
 GameObject:
   m_ObjectHideFlags: 0

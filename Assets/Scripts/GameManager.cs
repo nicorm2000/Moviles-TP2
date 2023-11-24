@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public bool isInitialized { get; set; }
+    public int equippedSkinIndex { get; set; }
     public int currentScore { get; set; }
     public int highScore
     {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt(_highScoreKey, value);
         }
     }
+    public PlayerData playerData;
 
     private const string _mainMenu = "MainMenu";
     private const string _game = "Game";
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
     {
         currentScore = 0;
         isInitialized = false;
+        equippedSkinIndex = PlayerPrefs.GetInt("EquippedSkinIndex", 0);
     }
 
     public void GoToMainMenu()

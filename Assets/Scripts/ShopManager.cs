@@ -28,7 +28,7 @@ public class ShopManager : MonoBehaviour
     public void PurchaseSkin()
     {
         int currentCoins = PlayerPrefs.GetInt("Coins", 0);
-        int skinCost = playerData.skinVariants[currentSkinIndex].cost;
+        int skinCost = GameManager.instance.playerData.skinVariants[currentSkinIndex].cost;
 
         if (currentCoins >= skinCost)
         {
@@ -36,8 +36,8 @@ public class ShopManager : MonoBehaviour
             currentCoins -= skinCost;
             PlayerPrefs.SetInt("Coins", currentCoins);
 
-            playerData.skinVariants[currentSkinIndex].isPurchased = true;
-            playerData.equippedSkinIndex = currentSkinIndex;
+            GameManager.instance.playerData.skinVariants[currentSkinIndex].isPurchased = true;
+            GameManager.instance.playerData.equippedSkinIndex = currentSkinIndex;
             UpdateUI();
         }
         else
@@ -50,14 +50,14 @@ public class ShopManager : MonoBehaviour
     public void EquipSkin()
     {
         AudioManager.instance.PlaySound(clickClip);
-        playerData.equippedSkinIndex = currentSkinIndex;
+        GameManager.instance.playerData.equippedSkinIndex = currentSkinIndex;
         UpdateUI();
-        Debug.Log("Skin equipped: " + playerData.skinVariants[currentSkinIndex].skinName);
+        Debug.Log("Skin equipped: " + GameManager.instance.playerData.skinVariants[currentSkinIndex].skinName);
     }
 
     public void NextSkin()
     {
-        if (currentSkinIndex < playerData.skinVariants.Length - 1)
+        if (currentSkinIndex < GameManager.instance.playerData.skinVariants.Length - 1)
         {
             currentSkinIndex++;
             UpdateUI();
@@ -88,11 +88,11 @@ public class ShopManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        SkinVariant currentSkin = playerData.skinVariants[currentSkinIndex];
+        SkinVariant currentSkin = GameManager.instance.playerData.skinVariants[currentSkinIndex];
 
         playerPreviewImage.sprite = currentSkin.skinSprite;
-        skinName.text = playerData.skinVariants[currentSkinIndex].skinName;
-        skinValue.text = playerData.skinVariants[currentSkinIndex].cost.ToString();
+        skinName.text = GameManager.instance.playerData.skinVariants[currentSkinIndex].skinName;
+        skinValue.text = GameManager.instance.playerData.skinVariants[currentSkinIndex].cost.ToString();
         coinsText.text = PlayerPrefs.GetInt("Coins", 0).ToString();
 
         purchase.interactable = !currentSkin.isPurchased;

@@ -16,6 +16,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private AudioClip deathClip;
     [SerializeField] private TMP_Text coinsText;
     [SerializeField] private PlayerData playerData;
+    [SerializeField] private SpriteRenderer playerSkin;
 
     public static bool hasStarted = false;
 
@@ -36,7 +37,7 @@ public class GameplayManager : MonoBehaviour
     private const int _scoreAchievement4 = 10000;
     #endregion
 
-    private void Awake()
+    private void Start()
     {
         GameManager.instance.isInitialized = true;
 
@@ -46,12 +47,7 @@ public class GameplayManager : MonoBehaviour
         score_Text.text = ((int)_score).ToString();
         _scoreSpeed = levelSpeed[_currentLevel];
 
-        if (playerData == null)
-        {
-            Debug.LogError("PlayerData is not assigned in GameplayManager.");
-        }
-
-        playerData.equippedSkinIndex = PlayerPrefs.GetInt("EquippedSkinIndex", 0);
+        playerSkin.sprite = GameManager.instance.playerData.skinVariants[GameManager.instance.playerData.equippedSkinIndex].skinSprite;
     }
 
     private void Update()
