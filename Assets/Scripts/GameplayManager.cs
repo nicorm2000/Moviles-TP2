@@ -1,3 +1,4 @@
+using GooglePlayGames.BasicApi;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -58,42 +59,45 @@ public class GameplayManager : MonoBehaviour
             _score += _scoreSpeed * Time.deltaTime;
             score_Text.text = ((int)_score).ToString();
 
-            //Achievement 100 score
-            if (_score >= _scoreAchievement1 && !_unlockedAchievement1)
+            if (PlayGamesManager.signedIn)
             {
-                PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
-                _unlockedAchievement1 = true;
-                Debug.Log("Unlocked Achievement 1");
-            }
+                //Achievement 100 score
+                if (_score >= _scoreAchievement1 && !_unlockedAchievement1)
+                {
+                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                    _unlockedAchievement1 = true;
+                    Debug.Log("Unlocked Achievement 1");
+                }
 
-            //Achievement 1000 score
-            if (_score >= _scoreAchievement2 && !_unlockedAchievement2)
-            {
-                PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
-                _unlockedAchievement2 = true;
-                Debug.Log("Unlocked Achievement 2");
-            }
+                //Achievement 1000 score
+                if (_score >= _scoreAchievement2 && !_unlockedAchievement2)
+                {
+                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                    _unlockedAchievement2 = true;
+                    Debug.Log("Unlocked Achievement 2");
+                }
 
-            //Achievement 5000 score
-            if (_score >= _scoreAchievement3 && !_unlockedAchievement3)
-            {
-                PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
-                _unlockedAchievement3 = true;
-                Debug.Log("Unlocked Achievement 3");
-            }
+                //Achievement 5000 score
+                if (_score >= _scoreAchievement3 && !_unlockedAchievement3)
+                {
+                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                    _unlockedAchievement3 = true;
+                    Debug.Log("Unlocked Achievement 3");
+                }
 
-            //Achievement 10000 score
-            if (_score >= _scoreAchievement4 && !_unlockedAchievement4)
-            {
-                PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
-                _unlockedAchievement4 = true;
-                Debug.Log("Unlocked Achievement 4");
-            }
+                //Achievement 10000 score
+                if (_score >= _scoreAchievement4 && !_unlockedAchievement4)
+                {
+                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                    _unlockedAchievement4 = true;
+                    Debug.Log("Unlocked Achievement 4");
+                }
 
-            if (_score > levelMax[Mathf.Clamp(_currentLevel, 0, levelSpeed.Count - 1)])
-            {
-                _currentLevel = Mathf.Clamp(_currentLevel + 1, 0, levelSpeed.Count - 1);
-                _scoreSpeed = levelSpeed[_currentLevel];
+                if (_score > levelMax[Mathf.Clamp(_currentLevel, 0, levelSpeed.Count - 1)])
+                {
+                    _currentLevel = Mathf.Clamp(_currentLevel + 1, 0, levelSpeed.Count - 1);
+                    _scoreSpeed = levelSpeed[_currentLevel];
+                }
             }
         }
     }

@@ -7,8 +7,7 @@ using TMPro;
 public class PlayGamesManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI detailsText;
-
-    private float changeScene = 2f;
+    public static bool signedIn;
 
     private void Start()
     {
@@ -31,6 +30,8 @@ public class PlayGamesManager : MonoBehaviour
 
             detailsText.text = "Success \n" + name;
 
+            signedIn = true;
+
             SceneManager.LoadScene("MainMenu");
         }
         else
@@ -41,6 +42,7 @@ public class PlayGamesManager : MonoBehaviour
 
     public void LoginFailed()
     {
+        signedIn = false;
         SceneManager.LoadScene("MainMenu");
     }
 
