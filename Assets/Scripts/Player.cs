@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     {
         if (GameplayManager.hasStarted)
         {
+            Debug.Log("Player changed direction");
             transform.Rotate(0, 0, rotateSpeed * Time.fixedDeltaTime);
         }
     }
@@ -32,7 +33,9 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Obstacle"))
         {
             Instantiate(explosion, transform.GetChild(0).position, Quaternion.identity);
+            Debug.Log("Death explosion");
             gameplayManager.GameEnded();
+            Debug.Log("Player died");
             Destroy(gameObject);
             return;
         }

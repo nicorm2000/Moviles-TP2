@@ -3,7 +3,6 @@ using GooglePlayGames.BasicApi;
 using GooglePlayGames;
 using UnityEngine;
 using TMPro;
-using System.Collections;
 
 public class PlayGamesManager : MonoBehaviour
 {
@@ -44,4 +43,16 @@ public class PlayGamesManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    #region ACHIEVEMENTS
+    public static void UnlockAchievemt(string id)
+    {
+        Social.ReportProgress(id, 100, success => { });
+    }
+
+    public static void ShowAchievementsUI()
+    {
+        Social.ShowAchievementsUI();
+    }
+    #endregion
 }

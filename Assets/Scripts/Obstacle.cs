@@ -33,6 +33,8 @@ public class Obstacle : MonoBehaviour
                 _currentRotateSpeed = RandomRotateSpeed();
                 _rotateTime = RandomRotateTime();
                 _rotationStrategy = RandomRotateStrategy();
+                Debug.Log("Enemy rotate speed:" + _currentRotateSpeed);
+                Debug.Log("Enemy rotate direction:" + _rotationStrategy);
             }
         }
     }
@@ -42,10 +44,11 @@ public class Obstacle : MonoBehaviour
         if (GameplayManager.hasStarted)
         {
             if (_hasGameFinished)
-        {
-            return;
-        }
+            {
+                return;
+            }
             _rotationStrategy.Rotate(transform, _currentRotateSpeed, Time.fixedDeltaTime);
+            Debug.Log("Enemy rotated");
         }
     }
 

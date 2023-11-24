@@ -20,6 +20,18 @@ public class GameplayManager : MonoBehaviour
     private float _scoreSpeed;
     private int _currentLevel;
 
+    #region ACHIEVEMENTS
+    private bool _unlockedAchievement1 = false;
+    private bool _unlockedAchievement2 = false;
+    private bool _unlockedAchievement3 = false;
+    private bool _unlockedAchievement4 = false;
+
+    private const int _scoreAchievement1 = 100;
+    private const int _scoreAchievement2 = 1000;
+    private const int _scoreAchievement3 = 5000;
+    private const int _scoreAchievement4 = 10000;
+    #endregion
+
     private void Awake()
     {
         GameManager.instance.isInitialized = true;
@@ -42,8 +54,41 @@ public class GameplayManager : MonoBehaviour
         {
             HideTutorial();
             StartCoroutine(HideTutorialSemiCircle());
+            Debug.Log("Hide Tutorial");
             _score += _scoreSpeed * Time.deltaTime;
             score_Text.text = ((int)_score).ToString();
+
+            //Achievement 100 score
+            if (_score >= _scoreAchievement1 && !_unlockedAchievement1)
+            {
+                PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                _unlockedAchievement1 = true;
+                Debug.Log("Unlocked Achievement 1");
+            }
+
+            //Achievement 1000 score
+            if (_score >= _scoreAchievement2 && !_unlockedAchievement2)
+            {
+                PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                _unlockedAchievement2 = true;
+                Debug.Log("Unlocked Achievement 2");
+            }
+
+            //Achievement 5000 score
+            if (_score >= _scoreAchievement3 && !_unlockedAchievement3)
+            {
+                PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                _unlockedAchievement3 = true;
+                Debug.Log("Unlocked Achievement 3");
+            }
+
+            //Achievement 10000 score
+            if (_score >= _scoreAchievement4 && !_unlockedAchievement4)
+            {
+                PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
+                _unlockedAchievement4 = true;
+                Debug.Log("Unlocked Achievement 4");
+            }
 
             if (_score > levelMax[Mathf.Clamp(_currentLevel, 0, levelSpeed.Count - 1)])
             {
@@ -58,6 +103,7 @@ public class GameplayManager : MonoBehaviour
         _hasGameFinished = true;
         hasStarted = false;
         GameManager.instance.currentScore = (int)_score;
+        Debug.Log("Game Ended");
         StartCoroutine(GameOver());
     }
 

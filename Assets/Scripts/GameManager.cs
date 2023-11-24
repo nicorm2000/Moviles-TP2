@@ -6,9 +6,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool isInitialized { get; set; }
     public int currentScore { get; set; }
-    public int highScore 
+    public int highScore
     {
-        get 
+        get
         {
             return PlayerPrefs.GetInt(_highScoreKey, 0);
         }
@@ -18,14 +18,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private const string _mainMenu = "MainMenu"; 
-    private const string _game = "Game"; 
-    private const string _shop = "Shop"; 
+    private const string _mainMenu = "MainMenu";
+    private const string _game = "Game";
+    private const string _shop = "Shop";
     private string _highScoreKey = "HighScore";
 
     private void Awake()
     {
-        if (instance == null) 
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);

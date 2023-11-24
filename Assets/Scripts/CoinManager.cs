@@ -42,5 +42,6 @@ public class CoinManager : MonoBehaviour
 
         coin.transform.position = new Vector2(randomX, spawnPoint.position.y);
         coin.SetActive(true);
+        Debug.Log("Spawn Coin");
     }
 }

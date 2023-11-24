@@ -99,38 +99,51 @@ public class MainMenuManager : MonoBehaviour
         FileManager.DeleteFile();
     }
 
+    public void ShowAchievementsUI()
+    {
+        Debug.Log("Show Achievements");
+        PlayGamesManager.ShowAchievementsUI();
+    }
+
     public void ClickedPlay()
     {
+        Debug.Log("Play Game");
         _playCommand.Execute(clickClip);
     }
 
     public void ClickedShop()
     {
+        Debug.Log("Go to Shop");
         _shopCommand.Execute(clickClip);
     }
 
     public void ActivateCredits()
     {
+        Debug.Log("Credits ON");
         _activateCreditsCommand.Execute(clickClip);
     }
 
     public void DeactivateCredits()
     {
+        Debug.Log("Credits OFF");
         _deactivateCreditstCommand.Execute(clickClip);
     }
 
     public void ActivatePlugin()
     {
+        Debug.Log("Plugin ON");
         _activatePluginCommand.Execute(clickClip);
     }
 
     public void DeactivatePlugin() 
     {
+        Debug.Log("Plugin OFF");
         _deactivatePluginCommand.Execute(clickClip);
     }
 
     public void OpenURL(string url)
     {
+        Debug.Log("Open Link");
         _openURLCommand = new OpenURLCommand(url);
         _openURLCommand.Execute(clickClip);
     }

@@ -20,6 +20,7 @@ public class Coin : MonoBehaviour
 
             if (transform.position.y < CoinManager.Instance.despawnYPosition)
             {
+                Debug.Log("Coin despawned");
                 gameObject.SetActive(false);
             }
         }
@@ -37,10 +38,9 @@ public class Coin : MonoBehaviour
     {
         int currentCoins = PlayerPrefs.GetInt("Coins", 0);
         currentCoins++;
+        Debug.Log("Player collected coin");
         PlayerPrefs.SetInt("Coins", currentCoins);
-
         Debug.Log("Player's current coins: " + currentCoins);
-
         gameObject.SetActive(false);
     }
 }
