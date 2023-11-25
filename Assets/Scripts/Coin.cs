@@ -20,6 +20,7 @@ public class Coin : MonoBehaviour
 
             if (transform.position.y < CoinManager.Instance.despawnYPosition)
             {
+                FileManager.WriteFile("Coin despawned");
                 Debug.Log("Coin despawned");
                 gameObject.SetActive(false);
             }
@@ -38,8 +39,10 @@ public class Coin : MonoBehaviour
     {
         int currentCoins = PlayerPrefs.GetInt("Coins", 0);
         currentCoins++;
+        FileManager.WriteFile("Player collected coin");
         Debug.Log("Player collected coin");
         PlayerPrefs.SetInt("Coins", currentCoins);
+        FileManager.WriteFile("Player's current coins: " + currentCoins);
         Debug.Log("Player's current coins: " + currentCoins);
         gameObject.SetActive(false);
     }

@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
+        FileManager.WriteFile("Played click sound");
         Debug.Log("Played click sound");
         _audioSource.PlayOneShot(clip);
     }

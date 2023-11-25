@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -13,8 +12,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private AudioClip clickClip;
     [SerializeField] private float animationTime;
     [SerializeField] private AnimationCurve speedCurve;
-    [SerializeField] private ScrollRect scrollRect;
-    [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TMP_Text inputText;
     [SerializeField] private TMP_Text coinsText;
 
@@ -88,63 +85,64 @@ public class MainMenuManager : MonoBehaviour
         inputText.text = FileManager.ReadFile();
     }
 
-    public void Write()
-    {
-        if (inputField.text != string.Empty)
-        {
-            FileManager.WriteFile(inputField.text + "\n");
-        }
-    }
-
     public void Delete()
     {
         FileManager.DeleteFile();
+        inputText.text = FileManager.ReadFile();
     }
 
     public void ShowAchievementsUI()
     {
+        FileManager.WriteFile("Show Achievements");
         Debug.Log("Show Achievements");
         PlayGamesManager.ShowAchievementsUI();
     }
 
     public void ClickedPlay()
     {
+        FileManager.WriteFile("Play Game");
         Debug.Log("Play Game");
         _playCommand.Execute(clickClip);
     }
 
     public void ClickedShop()
     {
+        FileManager.WriteFile("Go to Shop");
         Debug.Log("Go to Shop");
         _shopCommand.Execute(clickClip);
     }
 
     public void ActivateCredits()
     {
-        Debug.Log("Credits ON");
+        FileManager.WriteFile("Credits Open");
+        Debug.Log("Credits Open");
         _activateCreditsCommand.Execute(clickClip);
     }
 
     public void DeactivateCredits()
     {
-        Debug.Log("Credits OFF");
+        FileManager.WriteFile("Credits Close");
+        Debug.Log("Credits Close");
         _deactivateCreditstCommand.Execute(clickClip);
     }
 
     public void ActivatePlugin()
     {
-        Debug.Log("Plugin ON");
+        FileManager.WriteFile("Plugin Open");
+        Debug.Log("Plugin Open");
         _activatePluginCommand.Execute(clickClip);
     }
 
     public void DeactivatePlugin() 
     {
-        Debug.Log("Plugin OFF");
+        FileManager.WriteFile("Plugin Close");
+        Debug.Log("Plugin Close");
         _deactivatePluginCommand.Execute(clickClip);
     }
 
     public void OpenURL(string url)
     {
+        FileManager.WriteFile("Open Link");
         Debug.Log("Open Link");
         _openURLCommand = new OpenURLCommand(url);
         _openURLCommand.Execute(clickClip);

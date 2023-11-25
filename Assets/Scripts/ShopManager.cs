@@ -24,6 +24,7 @@ public class ShopManager : MonoBehaviour
     private bool _unlockedAchievement5 = false;
     private bool _firstPurchase = false;
     #endregion
+
     private void Start()
     {
         currentSkinIndex = playerData.equippedSkinIndex;
@@ -59,6 +60,7 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
+            FileManager.WriteFile("Not enough coins to purchase the skin.");
             Debug.Log("Not enough coins to purchase the skin.");
             AudioManager.instance.PlaySound(error);
         }

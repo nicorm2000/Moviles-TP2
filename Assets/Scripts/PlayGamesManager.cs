@@ -28,12 +28,14 @@ public class PlayGamesManager : MonoBehaviour
             string imgURL = PlayGamesPlatform.Instance.GetUserImageUrl();
 
             detailsText.text = "Success \n" + name;
+            FileManager.WriteFile("Success \n" + name);
 
             SceneManager.LoadScene("MainMenu");
         }
         else
         {
             detailsText.text = "Sign In failed!";
+            FileManager.WriteFile("Sign In failed!");
         }
     }
 

@@ -95,6 +95,7 @@ public class GameplayManager : MonoBehaviour
         {
             HideTutorial();
             StartCoroutine(HideTutorialSemiCircle());
+            FileManager.WriteFile("Hide Tutorial");
             Debug.Log("Hide Tutorial");
             _score += _scoreSpeed * Time.deltaTime;
             score_Text.text = ((int)_score).ToString();
@@ -106,6 +107,7 @@ public class GameplayManager : MonoBehaviour
                 {
                     PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_100_club);
                     _unlockedAchievement1 = true;
+                    FileManager.WriteFile("Unlocked Achievement 1");
                     Debug.Log("Unlocked Achievement 1");
                 }
 
@@ -114,6 +116,7 @@ public class GameplayManager : MonoBehaviour
                 {
                     PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_10000_club);
                     _unlockedAchievement2 = true;
+                    FileManager.WriteFile("Unlocked Achievement 2");
                     Debug.Log("Unlocked Achievement 2");
                 }
 
@@ -122,6 +125,7 @@ public class GameplayManager : MonoBehaviour
                 {
                     PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_5000_club);
                     _unlockedAchievement3 = true;
+                    FileManager.WriteFile("Unlocked Achievement 3");
                     Debug.Log("Unlocked Achievement 3");
                 }
 
@@ -130,6 +134,7 @@ public class GameplayManager : MonoBehaviour
                 {
                     PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_10000_club);
                     _unlockedAchievement4 = true;
+                    FileManager.WriteFile("Unlocked Achievement 4");
                     Debug.Log("Unlocked Achievement 4");
                 }
             }
@@ -147,6 +152,7 @@ public class GameplayManager : MonoBehaviour
         _hasGameFinished = true;
         hasStarted = false;
         GameManager.instance.currentScore = (int)_score;
+        FileManager.WriteFile("Game Ended");
         Debug.Log("Game Ended");
         AudioManager.instance.PlaySound(deathClip);
         StartCoroutine(GameOver());

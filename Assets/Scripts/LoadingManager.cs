@@ -25,6 +25,7 @@ public class LoadingManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        FileManager.WriteFile("Loading Scene");
         Debug.Log("Loading Scene");
         StartCoroutine(InternalLoadScene(sceneName));
     }
@@ -48,6 +49,7 @@ public class LoadingManager : MonoBehaviour
         yield return new WaitForSeconds(waitTimer);
 
         asyncLoad.allowSceneActivation = true;
+        FileManager.WriteFile("Scene Loaded");
         Debug.Log("Scene Loaded");
     }
 }

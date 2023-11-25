@@ -25,7 +25,7 @@ public static class FileManager
         {
             Init();
         }
-        fileManagerInstance?.Call("WriteFile", data);
+        fileManagerInstance?.Call("WriteFile", data + "\n");
     }
 
     public static void DeleteFile()

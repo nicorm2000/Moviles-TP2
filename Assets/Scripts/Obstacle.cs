@@ -33,7 +33,9 @@ public class Obstacle : MonoBehaviour
                 _currentRotateSpeed = RandomRotateSpeed();
                 _rotateTime = RandomRotateTime();
                 _rotationStrategy = RandomRotateStrategy();
+                FileManager.WriteFile("Enemy rotate speed:" + _currentRotateSpeed);
                 Debug.Log("Enemy rotate speed:" + _currentRotateSpeed);
+                FileManager.WriteFile("Enemy rotate direction:" + _rotationStrategy);
                 Debug.Log("Enemy rotate direction:" + _rotationStrategy);
             }
         }
@@ -48,6 +50,7 @@ public class Obstacle : MonoBehaviour
                 return;
             }
             _rotationStrategy.Rotate(transform, _currentRotateSpeed, Time.fixedDeltaTime);
+            FileManager.WriteFile("Enemy rotated");
             Debug.Log("Enemy rotated");
         }
     }
