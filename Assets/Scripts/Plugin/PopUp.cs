@@ -36,7 +36,7 @@ public static class PopUp
         popupManager = new AndroidJavaClass(packName + "." + loggerClassName);
         AndroidJavaClass unityJC = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject activity = unityJC.GetStatic<AndroidJavaObject>("currentActivity");
-        popupManager.SetStatic("mainActivity", activity);
+        popupManager.SetStatic("mainAct", activity);
 
         popupManagerInstance = popupManager.CallStatic<AndroidJavaObject>("GetInstance");
 #endif

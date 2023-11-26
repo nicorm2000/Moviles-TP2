@@ -33,7 +33,6 @@ public class RamosMarinPlugin : MonoBehaviour
         {
             pluginInstance.CallStatic("receiveUnityActivity", unityActivity);
         }
-
     }
 #endif
 }

@@ -88,7 +88,7 @@ public class MainMenuManager : MonoBehaviour
     public void Delete()
     {
         FileManager.DeleteFile();
-        inputText.text = FileManager.ReadFile();
+        inputText.text = "";
     }
 
     public void ShowAchievementsUI()
