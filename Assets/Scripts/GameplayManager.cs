@@ -114,7 +114,7 @@ public class GameplayManager : MonoBehaviour
                 //Achievement 1000 score
                 if (_score >= _scoreAchievement2 && !_unlockedAchievement2)
                 {
-                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_10000_club);
+                    PlayGamesManager.UnlockAchievemt(GPGSIds.achievement_1000_club);
                     _unlockedAchievement2 = true;
                     FileManager.WriteFile("Unlocked Achievement 2");
                     Debug.Log("Unlocked Achievement 2");
